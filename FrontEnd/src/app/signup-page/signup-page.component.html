@@ -17,22 +17,22 @@
     <div>
         <form class="form">
             <label >Hospital Name</label>
-            <input type="text":focus class="textbox" placeholder="Hospital Name">
+            <input [(ngModel)]="registerUserData.hospitalName" name="hospitalName" type="text":focus class="textbox" placeholder="Hospital Name" required>
             <label >Address</label>
-            <input type="text":focus class="textbox" placeholder="Hospital Address">
+            <input [(ngModel)]="registerUserData.address" name="address"type="text":focus class="textbox" placeholder="Hospital Address" required>
             <label >City</label>
-            <input type="text":focus class="textbox" placeholder="Hospital City">
+            <input [(ngModel)]="registerUserData.city" name="city"type="text":focus class="textbox" placeholder="Hospital City" required>
             <label >State</label>
-            <input type="text":focus class="textbox" placeholder="Hospital State">
+            <input [(ngModel)]="registerUserData.state" name="state"type="text":focus class="textbox" placeholder="Hospital State" required>
             <label >Zipcode</label>
-            <input type="text":focus class="textbox" placeholder="Hospital Zipcode">
+            <input [(ngModel)]="registerUserData.zipcode" name="zipcode"type="text":focus class="textbox" placeholder="Hospital Zipcode" required>
             <label >Hospital ID</label>
-            <input type="text":focus class="textbox" placeholder="Hospital ID">
+            <input [(ngModel)]="registerUserData.hospitalId" name="hospitalId"type="text":focus class="textbox" placeholder="Hospital ID" required>
             <label >Password</label>
-            <input type="text":focus class="textbox" placeholder="Password">
+            <input [(ngModel)]="registerUserData.password" name="password"type="password":focus class="textbox" placeholder="Password" required>
             <label >Confirm Password</label>
-            <input type="text":focus class="textbox" placeholder="Confirm Password">
-            <ul><li><a href="homepage.html">Submit</a></li></ul>
+            <input [(ngModel)]="registerUserData.ConfirmPassword" name="ConfirmPassword"type="password":focus class="textbox" placeholder="Confirm Password" required>
+            <button (click)="registerUser()">Submit</button>
         </form>
-    </div>
+    </div>  
     

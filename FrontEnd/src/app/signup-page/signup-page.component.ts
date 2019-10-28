@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../database.service';
+
 
 @Component({
   selector: 'app-signup-page',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPageComponent implements OnInit {
 
-  constructor() { }
+  registerUserData={}
+  constructor(private auth: DatabaseService) { }
 
   ngOnInit() {
+  }
+  registerUser(){
+    this.auth.registerUser(this.registerUserData)
+    .subscribe(
+      res=>console.log(res),
+      err=>console.log(err)
+    )
   }
 
 }

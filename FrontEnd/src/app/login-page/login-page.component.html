@@ -17,9 +17,9 @@
 <div>
     <form class="form">
         <label >Hospital ID </label>
-        <input type="text":focus class="textbox" placeholder="Hospital ID">
+        <input [(ngModel)]="loginUserData.hospitalId" name="HospitalID"type="text":focus class="textbox" placeholder="Hospital ID">
         <label >Password </label>
-        <input type="text":focus class="textbox" placeholder="Password">
-        <ul><li><a href="homepage.html">Submit</a></li></ul>
+        <input [(ngModel)]="loginUserData.password" name="password"type="password":focus class="textbox" placeholder="Password">
+        <button (click)="loginUser()">Submit</button>
     </form>
 </div>
