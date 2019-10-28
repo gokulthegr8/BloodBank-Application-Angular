@@ -26,6 +26,8 @@ app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next()
 });
+connection.query('CREATE TABLE IF NOT EXISTS hospital_sign_up(`id` int(10) NOT NULL primary key AUTO_INCREMENT,`hospitalName` varchar(50) NOT NULL,`address` varchar(100) NOT NULL,`city` varchar(25) NOT NULL,`state` varchar(25) NOT NULL,`zipcode` int(7) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)');
+connection.query('CREATE TABLE IF NOT EXISTS `hospital_sign_in` (`id` int(10) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)')
 
 app.use(session({
 	secret: 'secret',

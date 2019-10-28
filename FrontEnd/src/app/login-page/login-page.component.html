@@ -7,6 +7,14 @@
   
         </div>
     </div>
+    <div id="top-bar">
+            <ul>
+                <li><a routerLink="/homepage">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a routerLink="/login">Sign In</a></li>
+                <li><a routerLink="/register">Register</a></li>​
+            </ul>
+        </div>
     <section class="event">
         <div class=pic>
             <section class="event">
@@ -15,11 +23,11 @@
                         <h3 class="center"><em>LOGIN</em></h3>
                     </section>
 <div>
-    <form class="form">
+    <form class="form" action="auth" method="POST">
         <label >Hospital ID </label>
         <input [(ngModel)]="loginUserData.hospitalId" name="HospitalID"type="text":focus class="textbox" placeholder="Hospital ID">
         <label >Password </label>
         <input [(ngModel)]="loginUserData.password" name="password"type="password":focus class="textbox" placeholder="Password">
-        <button (click)="loginUser()">Submit</button>
+        <button (click)="loginUser()" routerLink="/homepage" >Submit</button>
     </form>
 </div>
