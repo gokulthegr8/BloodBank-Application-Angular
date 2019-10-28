@@ -23,7 +23,7 @@
                             <h3 class="center"><em>REGISTER</em></h3>
                         </section>
     <div>
-        <form class="form" action="auth" method="POST">
+        <form class="form" >
             <label >Hospital Name</label>
             <input [(ngModel)]="registerUserData.hospitalName" name="hospitalName" type="text":focus class="textbox" placeholder="Hospital Name" required>
             <label >Address</label>
@@ -40,7 +40,7 @@
             <input [(ngModel)]="registerUserData.password" name="password"type="password":focus class="textbox" placeholder="Password" required>
             <label >Confirm Password</label>
             <input [(ngModel)]="registerUserData.ConfirmPassword" name="ConfirmPassword"type="password":focus class="textbox" placeholder="Confirm Password" required>
-            <button (click)="registerUser()" routerLink="/login" >Submit</button>
+            <button (click)="registerUser()" class="button" routerLink="/login" >Submit</button>
         </form>
     </div>  
     

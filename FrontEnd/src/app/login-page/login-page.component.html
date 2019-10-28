@@ -23,11 +23,11 @@
                         <h3 class="center"><em>LOGIN</em></h3>
                     </section>
 <div>
-    <form class="form" action="auth" method="POST">
+    <form class="form" >
         <label >Hospital ID </label>
-        <input [(ngModel)]="loginUserData.hospitalId" name="HospitalID"type="text":focus class="textbox" placeholder="Hospital ID">
+        <input [(ngModel)]="loginUserData.hospitalId" name="HospitalID"type="text":focus class="textbox" placeholder="Hospital ID" required>
         <label >Password </label>
-        <input [(ngModel)]="loginUserData.password" name="password"type="password":focus class="textbox" placeholder="Password">
-        <button (click)="loginUser()" routerLink="/homepage" >Submit</button>
+        <input [(ngModel)]="loginUserData.password" name="password"type="password":focus class="textbox" placeholder="Password" required>
+        <button (click)="loginUser()" class="button" routerLink="/homepage" >Submit</button>
     </form>
 </div>

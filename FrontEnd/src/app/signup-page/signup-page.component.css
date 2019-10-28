@@ -315,7 +315,13 @@ footer {
   outline: none;
 }
 .button{
-    background-color: rgb(7, 7, 7);
-    padding: 12px 20px;
+    width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
 
 }

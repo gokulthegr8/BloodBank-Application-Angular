@@ -50,7 +50,9 @@ app.post('/auth', function(request, response) {
 		connection.query('SELECT * FROM hospital_sign_up WHERE hospitalId = ? AND password = ?', [hospitalId, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
-				request.session.hospitalId = hospitalId;
+        request.session.hospitalId = hospitalId;
+        // response.send('Logged in');
+
 				response.redirect('/home');
 			} else {
 				response.send('Incorrect hospitalId and/or Password!');
