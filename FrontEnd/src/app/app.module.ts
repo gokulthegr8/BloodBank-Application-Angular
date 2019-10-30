@@ -9,21 +9,25 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { DatabaseService } from './database.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {NeedAuthGuard} from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginPageComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+
   ],
-  providers: [DatabaseService],
+  providers: [DatabaseService,NeedAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
