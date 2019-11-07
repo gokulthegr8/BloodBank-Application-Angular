@@ -99,6 +99,55 @@ if (hospitalName && hospitalId && password) {
   response.send('Please enter the details!');
   response.end();
 }
+
+});
+app.get('/bloodavailabilityApos', function(request,response) {
+   connection.query('SELECT SUM(`Quantity A+`) AS qty FROM `BloodBanks`',(error,result)=>{
+     if(error) throw error;
+     response.send(result)
+   });
+});
+app.get('/bloodavailabilityAneg', function(request,response) {
+  connection.query('SELECT SUM(`Quantity A-`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
+});
+app.get('/bloodavailabilityBpos', function(request,response) {
+  connection.query('SELECT SUM(`Quantity B+`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
+});
+app.get('/bloodavailabilityBneg', function(request,response) {
+  connection.query('SELECT SUM(`Quantity B-`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
+});
+app.get('/bloodavailabilityOpos', function(request,response) {
+  connection.query('SELECT SUM(`Quantity O+`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
+});
+app.get('/bloodavailabilityOneg', function(request,response) {
+  connection.query('SELECT SUM(`Quantity O-`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
+});
+app.get('/bloodavailabilityABpos', function(request,response) {
+  connection.query('SELECT SUM(`Quantity AB+`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
+});
+app.get('/bloodavailabilityABneg', function(request,response) {
+  connection.query('SELECT SUM(`Quantity AB-`) AS qty FROM `BloodBanks`',(error,result)=>{
+    if(error) throw error;
+    response.send(result)
+  });
 });
 
 app.listen(3000);

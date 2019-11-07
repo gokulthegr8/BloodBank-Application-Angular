@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {NeedAuthGuard} from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BloodAvailabilityPageComponent } from './blood-availability-page/blood-availability-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomePageComponent,
     LoginPageComponent,
     SignupPageComponent,
-    DashboardComponent
+    DashboardComponent,
+    BloodAvailabilityPageComponent
   ],
   imports: [
     BrowserModule,
