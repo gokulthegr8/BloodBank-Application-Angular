@@ -1,154 +1,33 @@
-var mysql = require('mysql');
 var express = require('express');
-var session = require('express-session');
 var bodyParser = require('body-parser');
-var path = require('path');
-// var login = require('./app/controller/login.js');
-// var signup = require('./app/controller/signup.js');
-const cors=require('cors');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password : 'Pokemon_1',
-  // password: 'Pokemon_1',
-  // password: 'K2n4e6w8m10a12n14',
-  database: 'SSDI_Project'
-});
-
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+var db = require('./db');
 var app = express();
+var loginController = require('./app/controller/login');
+var signupController = require('./app/controller/signup');
+var bloodAvailabilityController = require('./app/controller/bloodAvailability');
 
 app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next()
 });
-connection.query('CREATE TABLE IF NOT EXISTS hospital_sign_up(`id` int(10) NOT NULL primary key AUTO_INCREMENT,`hospitalName` varchar(50) NOT NULL,`address` varchar(100) NOT NULL,`city` varchar(25) NOT NULL,`state` varchar(25) NOT NULL,`zipcode` int(7) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)');
-connection.query('CREATE TABLE IF NOT EXISTS `hospital_sign_in` (`id` int(10) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)')
-
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(cors())
+db.query('CREATE TABLE IF NOT EXISTS hospital_sign_up(`id` int(10) NOT NULL primary key AUTO_INCREMENT,`hospitalName` varchar(50) NOT NULL,`address` varchar(100) NOT NULL,`city` varchar(25) NOT NULL,`state` varchar(25) NOT NULL,`zipcode` int(7) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)');
+// db.query('CREATE TABLE IF NOT EXISTS `hospital_sign_in` (`id` int(10) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)')
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/app/controller/login.html'));
-});
+app.get('/auth',loginController);
+app.get('/signup',signupController);
+app.get('/bloodavailabilityApos',bloodAvailabilityController);
+app.get('/bloodavailabilityAneg',bloodAvailabilityController);
+app.get('/bloodavailabilityBpos',bloodAvailabilityController);
+app.get('/bloodavailabilityBneg',bloodAvailabilityController);
+app.get('/bloodavailabilityOpos',bloodAvailabilityController);
+app.get('/bloodavailabilityOneg',bloodAvailabilityController);
+app.get('/bloodavailabilityABpos',bloodAvailabilityController);
+app.get('/bloodavailabilityABneg',bloodAvailabilityController);
 
-app.post('/auth', function(request, response) {
-	var hospitalId = request.body.hospitalId;
-	var password = request.body.password;
-	if (hospitalId && password) {
-		connection.query('SELECT * FROM hospital_sign_up WHERE hospitalId = ? AND password = ?', [hospitalId, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-        request.session.hospitalId = hospitalId;
-        // response.send('Logged in');
-
-				response.redirect('/home');
-			} else {
-				response.send('Incorrect hospitalId and/or Password!');
-			}			
-			response.end();
-		});
-	} else {
-		response.send('Please enter hospitalId and Password!');
-		response.end();
-	}
-});
-
-app.get('/home', function(request, response) {
-	if (request.session.loggedin) {
-		response.json('Welcome back, ' + request.session.hospitalId + '!');
-	} else {
-		response.json('Please login to view this page!');
-	}
-	response.end();
-});
-
-app.post('/signup', function(request,response) {
-  var hospitalName = request.body.hospitalName;
-  var address = request.body.address;
-  var city = request.body.city;
-var state = request.body.state;    
-var zipcode = request.body.zipcode; 
-  var hospitalId = request.body.hospitalId;
-var password = request.body.password;
-if (hospitalName && hospitalId && password) {
-      
-      connection.query('INSERT INTO hospital_sign_up (`hospitalName`,`address`,`city`,`state`,`zipcode`, `hospitalId`, `password`) VALUES (?,?,?,?,?,?,?)',
-       [hospitalName,address,city,state,zipcode,hospitalId, password], function(error, results, fields) {
-    if (results > 0) {
-              response.json('Incorrect details!');
-    } else {
-    
-              response.json('Your account has been registered.');
-      // response.redirect('/app/controller/login.js');
-    }			
-    // response.end();
-  });
-} else {
-  response.send('Please enter the details!');
-  response.end();
-}
-
-});
-app.get('/bloodavailabilityApos', function(request,response) {
-   connection.query('SELECT SUM(`Quantity A+`) AS qty FROM `BloodBanks`',(error,result)=>{
-     if(error) throw error;
-     response.send(result)
-   });
-});
-app.get('/bloodavailabilityAneg', function(request,response) {
-  connection.query('SELECT SUM(`Quantity A-`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
-app.get('/bloodavailabilityBpos', function(request,response) {
-  connection.query('SELECT SUM(`Quantity B+`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
-app.get('/bloodavailabilityBneg', function(request,response) {
-  connection.query('SELECT SUM(`Quantity B-`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
-app.get('/bloodavailabilityOpos', function(request,response) {
-  connection.query('SELECT SUM(`Quantity O+`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
-app.get('/bloodavailabilityOneg', function(request,response) {
-  connection.query('SELECT SUM(`Quantity O-`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
-app.get('/bloodavailabilityABpos', function(request,response) {
-  connection.query('SELECT SUM(`Quantity AB+`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
-app.get('/bloodavailabilityABneg', function(request,response) {
-  connection.query('SELECT SUM(`Quantity AB-`) AS qty FROM `BloodBanks`',(error,result)=>{
-    if(error) throw error;
-    response.send(result)
-  });
-});
 
 app.listen(3000);
 //abc

@@ -1,37 +1,26 @@
-var mysql = require('mysql');
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var path = require('path');
-const cors=require('cors');
+const cors= require('cors');
+var db = require('../../db');
 
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'Pokemon_1',
-	database : 'SSDI_Project'
-});
+var router = express.Router();
 
-var app = express();
-app.use(session({
+router.use(session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
 }));
-app.use(cors())
+router.use(cors());
 
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended : true}));
+router.use(bodyParser.json());
 
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/login.html'));
-});
-
-app.post('/auth', function(request, response) {
+router.post('/auth', function(request, response) {
 	var hospitalId = request.body.hospitalId;
 	var password = request.body.password;
 	if (hospitalId && password) {
-		connection.query('SELECT * FROM hospital_sign_in WHERE hospitalId = ? AND password = ?', [hospitalId, password], function(error, results, fields) {
+		db.query('SELECT * FROM hospital_sign_up WHERE hospitalId = ? AND password = ?', [hospitalId, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.hospitalId = hospitalId;
@@ -47,7 +36,7 @@ app.post('/auth', function(request, response) {
 	}
 });
 
-app.get('/home', function(request, response) {
+router.get('/home', function(request, response) {
 	if (request.session.loggedin) {
 		response.send('Welcome back, ' + request.session.hospitalId + '!');
 	} else {
@@ -56,4 +45,4 @@ app.get('/home', function(request, response) {
 	response.end();
 });
 
-app.listen(3000);
+module.exports = router;

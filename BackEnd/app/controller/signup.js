@@ -1,20 +1,12 @@
-var mysql = require('mysql');
 var express = require('express');
-var bodyParser = require('body-parser');
+var db = require('../../db');
 
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'Pokemon_1',
-	database : 'SSDI_Project'
-});
+var router = express.Router();
 
-var app = express();
+router.use(bodyParser.urlencoded({extended : true}));
+router.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
-
-app.post('/signup', function(request,response) {
+router.post('/signup', function(request,response) {
     var hospitalName = request.body.hospitalName;
     var address = request.body.address;
     var city = request.body.city;
@@ -23,8 +15,7 @@ app.post('/signup', function(request,response) {
     var hospitalId = request.body.hospitalId;
 	var password = request.body.password;
 	if (hospitalName && hospitalId && password) {
-        
-        connection.query('INSERT INTO hospital_sign_up (`hospitalName`,`address`,`city`,`state`,`zipcode`, `hospitalId`, `password`) VALUES (?,?,?,?,?,?,?)',
+        db.query('INSERT INTO hospital_sign_up (`hospitalName`,`address`,`city`,`state`,`zipcode`, `hospitalId`, `password`) VALUES (?,?,?,?,?,?,?)',
          [hospitalName,address,city,state,zipcode,hospitalId, password], function(error, results, fields) {
 			if (results > 0) {
                 response.send('Incorrect details!');
@@ -40,3 +31,4 @@ app.post('/signup', function(request,response) {
 	}
 });
 
+module.exports = router;
