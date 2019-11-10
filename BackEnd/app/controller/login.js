@@ -3,6 +3,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 const cors= require('cors');
 var db = require('../../db');
+var app = express();
 
 var router = express.Router();
 
@@ -38,9 +39,9 @@ router.post('/auth', function(request, response) {
 
 router.get('/home', function(request, response) {
 	if (request.session.loggedin) {
-		response.send('Welcome back, ' + request.session.hospitalId + '!');
+		response.json('Welcome back, ' + request.session.hospitalId + '!');
 	} else {
-		response.send('Please login to view this page!');
+		response.json('Please login to view this page!');
 	}
 	response.end();
 });

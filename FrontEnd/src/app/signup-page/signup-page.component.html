@@ -1,4 +1,5 @@
-<header>
+  <header>
+    
         <div id="header">
             <div id="heading-text">
                 <a href="index.html"><img src="../../assets/images/logo.png" alt="Blood Bank logo" /></a>
@@ -23,24 +24,33 @@
                             <h3 class="center"><em>REGISTER</em></h3>
                         </section>
     <div>
-        <form class="form" >
+        
+        <form class="form" onsubmit="return checkForm(this);"  >
             <label >Hospital Name</label>
-            <input [(ngModel)]="registerUserData.hospitalName" name="hospitalName" type="text":focus class="textbox" placeholder="Hospital Name" required>
+            <input [(ngModel)]="registerUserData.hospitalName"[(ngModel)]="user.hospitalName" name="hospitalName" type="text":focus class="textbox" placeholder="Hospital Name" required minlength="5" maxlength="8" required>
+            <!-- <p>hospitalName: <input type="text" name="hospitalName"></p> -->
+ 
             <label >Address</label>
-            <input [(ngModel)]="registerUserData.address" name="address"type="text":focus class="textbox" placeholder="Hospital Address" required>
+            <input [(ngModel)]="registerUserData.address" [(ngModel)]="user.address"name="address"type="text":focus class="textbox" placeholder="Hospital Address" required>
             <label >City</label>
-            <input [(ngModel)]="registerUserData.city" name="city"type="text":focus class="textbox" placeholder="Hospital City" required>
+            <input [(ngModel)]="registerUserData.city"[(ngModel)]="user.city" name="city"type="text":focus class="textbox" placeholder="Hospital City" required>
             <label >State</label>
-            <input [(ngModel)]="registerUserData.state" name="state"type="text":focus class="textbox" placeholder="Hospital State" required>
+            <input [(ngModel)]="registerUserData.state"[(ngModel)]="user.state" name="state"type="text":focus class="textbox" placeholder="Hospital State" required>
             <label >Zipcode</label>
-            <input [(ngModel)]="registerUserData.zipcode" name="zipcode"type="text":focus class="textbox" placeholder="Hospital Zipcode" required>
+            <input [(ngModel)]="registerUserData.zipcode"[(ngModel)]="user.zipcode" name="zipcode"type="text":focus class="textbox" placeholder="Hospital Zipcode" required>
             <label >Hospital ID</label>
-            <input [(ngModel)]="registerUserData.hospitalId" name="hospitalId"type="text":focus class="textbox" placeholder="Hospital ID" required>
+            <input [(ngModel)]="registerUserData.hospitalId"[(ngModel)]="user.hospitalId" name="hospitalId"type="text":focus class="textbox" placeholder="Hospital ID" required>
             <label >Password</label>
-            <input [(ngModel)]="registerUserData.password" name="password"type="password":focus class="textbox" placeholder="Password" required>
+            <input [(ngModel)]="registerUserData.password"[(ngModel)]="user.password" name="password" id="password"type="password":focus class="textbox" placeholder="Password" onkeyup='check_pass();' required>
+            <!-- <p>Password: <input type="password" name="password"></p> -->
             <label >Confirm Password</label>
-            <input [(ngModel)]="registerUserData.ConfirmPassword" name="ConfirmPassword"type="password":focus class="textbox" placeholder="Confirm Password" required>
-            <button (click)="registerUser()" class="button"  >Submit</button>
+            <input [(ngModel)]="registerUserData.ConfirmPassword"[(ngModel)]="user.ConfirmPassword" name="ConfirmPassword" id="ConfirmPassword"type="password":focus class="textbox" placeholder="Confirm Password"onkeyup='check_pass();' required>
+            <!-- <p>Confirm Password: <input type="password" name="ConfirmPassword"></p> -->
+
+            <button (click)="registerUser()" class="button" id="submit" type="submit" >Submit</button>
+           <!-- <p> <input  type="submit" onclick="registerUser()"  ></p> -->
+
         </form>
+       
+        
     </div>  
-    
