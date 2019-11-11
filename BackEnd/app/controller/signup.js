@@ -7,6 +7,33 @@ var router = express.Router();
 router.use(bodyParser.urlencoded({extended : true}));
 router.use(bodyParser.json());
 
+router.post('/checkHospitalID', function(request, response) {
+	var hospitalId = request.body.hospitalId;
+	var boolean=false;
+	if (hospitalId) {
+		db.query('SELECT * FROM hospital_sign_up WHERE hospitalId = ?', [hospitalId], function(error, results, fields) {
+			if (results.length > 0) {
+				response.send('HospitalID already exists in the database')
+				// response.redirect('/home');
+
+			} else {
+				boolean=true;
+				response.redirect('/home');
+
+				// response.send('HospitalID not present in the database');
+			}			
+			response.end();
+		});
+	} 
+});
+router.get('/home', function(request, response) {
+	if (boolean) {
+		response.json('Hospital ID is correct');
+	} else {
+		response.json('Hospital ID incorrect');
+	}
+	response.end();
+});
 router.post('/signup', function(request,response) {
     var hospitalName = request.body.hospitalName;
     var address = request.body.address;
@@ -30,6 +57,8 @@ router.post('/signup', function(request,response) {
 		response.json('Please enter the details!');
 		response.end();
 	}
+	
 });
+
 
 module.exports = router;

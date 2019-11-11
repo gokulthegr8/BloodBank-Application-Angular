@@ -12,6 +12,13 @@ import { FormsModule } from '@angular/forms';
 import {NeedAuthGuard} from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BloodAvailabilityPageComponent } from './blood-availability-page/blood-availability-page.component';
+import { BloodAvailabilityPageBposComponent } from './blood-availability-page/blood-availability-page-bpos/blood-availability-page-bpos.component';
+import { BloodAvailabilityPageBnegComponent } from './blood-availability-page/blood-availability-page-bneg/blood-availability-page-bneg.component';
+import { BloodAvailabilityPageOposComponent } from './blood-availability-page/blood-availability-page-opos/blood-availability-page-opos.component';
+import { BloodAvailabilityPageOnegComponent } from './blood-availability-page/blood-availability-page-oneg/blood-availability-page-oneg.component';
+import { BloodAvailabilityPageAbposComponent } from './blood-availability-page/blood-availability-page-abpos/blood-availability-page-abpos.component';
+import { BloodAvailabilityPageAbnegComponent } from './blood-availability-page/blood-availability-page-abneg/blood-availability-page-abneg.component';
+import { BloodAvailabilityPageAnegComponent } from './blood-availability-page/blood-availability-page-aneg/blood-availability-page-aneg.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,14 @@ import { BloodAvailabilityPageComponent } from './blood-availability-page/blood-
     LoginPageComponent,
     SignupPageComponent,
     DashboardComponent,
-    BloodAvailabilityPageComponent
+    BloodAvailabilityPageComponent,
+    BloodAvailabilityPageBposComponent,
+    BloodAvailabilityPageBnegComponent,
+    BloodAvailabilityPageOposComponent,
+    BloodAvailabilityPageOnegComponent,
+    BloodAvailabilityPageAbposComponent,
+    BloodAvailabilityPageAbnegComponent,
+    BloodAvailabilityPageAnegComponent
   ],
   imports: [
     BrowserModule,

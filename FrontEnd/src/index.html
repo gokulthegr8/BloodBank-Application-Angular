@@ -52,11 +52,11 @@
       return false;
     }
     if(form.password.value != "" && form.password.value == form.ConfirmPassword.value) {
-      if(form.password.value.length < 6) {
-        alert("Error: Password must contain at least six characters!");
-        form.password.focus();
-        return false;
-      }
+      // if(form.password.value.length < 6) {
+      //   alert("Error: Password must contain at least six characters!");
+      //   form.password.focus();
+      //   return false;
+      // }
       if(form.password.value == form.username.value) {
         alert("Error: Password must be different from Username!");
         form.password.focus();

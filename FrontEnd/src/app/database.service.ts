@@ -21,6 +21,7 @@ export class DatabaseService {
   private bloodAvailabilityOneg='http://localhost:3000/bloodavailabilityOneg';
   private bloodAvailabilityABpos='http://localhost:3000/bloodavailabilityABpos';
   private bloodAvailabilityABneg='http://localhost:3000/bloodavailabilityABneg';
+  private checkHospitalID='http://localhost:3000/checkHospitalID';
 
 
   constructor(private http: HttpClient) { }
@@ -28,8 +29,15 @@ export class DatabaseService {
     return this.http.get(`${this.uri}`);
   }
   registerUser(user){
+    // return this.http.post<any>(this.checkHospitalID,hospitalID)
+
 return this.http.post<any>(this.register_url,user)
   }
+//   registerUser(user,hospitalID){
+//     return this.http.post<any>(this.checkHospitalID,hospitalID)
+
+// return this.http.post<any>(this.register_url,user)
+//   }
   loginUser(user){
     return this.http.post<any>(this.login_url,user)
       }
@@ -73,4 +81,7 @@ return this.http.post<any>(this.register_url,user)
         return this.http.get<Iblood[]>(this.bloodAvailabilityABneg);
 
       }
+      checkHosID(hospitalID){
+        return this.http.post<any>(this.checkHospitalID,hospitalID)
+          }
 }

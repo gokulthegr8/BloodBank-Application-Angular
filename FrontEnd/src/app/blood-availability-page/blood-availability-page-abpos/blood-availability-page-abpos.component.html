@@ -18,31 +18,26 @@
         <section class="event">
             <div class="big">
                 <section class='intro'>
-                    <h3 class="center"><em>Welcome to the dashboard</em></h3>
+                    <h3 class="center" ><em>Blood Type: AB+</em></h3>
                 </section>
-  <ul><li><a href="emergency.html">Emergency</a></li></ul>
             </div>
         </section>
     </div>
     <section class="event">
       <div class="big">
           <section class='intro'>
-            <h3 class="center"><em>Blood Groups</em></h3>
+            <h3 class="center"><em>Available Units: {{blood}}  </em></h3>
           </section>
   
     
-    <ul>
-      <li><a routerLink="/blood-availability-page" >A+</a></li>
-      <li><a routerLink="/blood-availability-page-aneg" >A-</a></li>
-      <li><a routerLink="/blood-availability-page-bpos" >B+</a></li>
-      <li><a routerLink="/blood-availability-page-bneg" >B-</a></li>
-  </ul>
-  <ul>
-    <li><a routerLink="/blood-availability-page-opos" >O+</a></li>
-    <li><a routerLink="/blood-availability-page-oneg" >O-</a></li>
-    <li><a routerLink="/blood-availability-page-abpos" >AB+</a></li>
-    <li><a routerLink="/blood-availability-page-abneg" >AB-</a></li>
-  </ul>
+          
+            <form class="form" >
+                <label >Amount:  </label>
+                <input type="text":focus class="textbox" placeholder="Enter the amount of blood required" required>
+    
+                <button (click)="addtoCart()" class="button1" routerLink="/Cart" >Add to Cart</button>
+            </form>
+        
   
   </div>
   </section>

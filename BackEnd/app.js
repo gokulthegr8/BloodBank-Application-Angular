@@ -14,7 +14,7 @@ app.all('/', function(req, res, next) {
 });
 app.use(cors())
 
-db.query('CREATE TABLE IF NOT EXISTS hospital_sign_up(`id` int(10) NOT NULL primary key AUTO_INCREMENT,`hospitalName` varchar(50) NOT NULL,`address` varchar(100) NOT NULL,`city` varchar(25) NOT NULL,`state` varchar(25) NOT NULL,`zipcode` int(7) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)');
+db.query('CREATE TABLE IF NOT EXISTS hospital_sign_up(`id` int(10) NOT NULL primary key AUTO_INCREMENT,`hospitalName` varchar(50) NOT NULL,`address` varchar(100) NOT NULL,`city` varchar(25) NOT NULL,`state` varchar(25) NOT NULL,`zipcode` int(7) NOT NULL,`hospitalId` int(15) NOT NULL UNIQUE,`password` varchar(255) NOT NULL)');
 // db.query('CREATE TABLE IF NOT EXISTS `hospital_sign_in` (`id` int(10) NOT NULL,`hospitalId` int(15) NOT NULL,`password` varchar(255) NOT NULL)')
 
 app.use(bodyParser.urlencoded({extended : true}));
@@ -31,6 +31,8 @@ app.get('/bloodavailabilityOpos',bloodAvailabilityController);
 app.get('/bloodavailabilityOneg',bloodAvailabilityController);
 app.get('/bloodavailabilityABpos',bloodAvailabilityController);
 app.get('/bloodavailabilityABneg',bloodAvailabilityController);
+app.post('/checkHospitalID',signupController);
+app.get('/home',signupController);
 
 
 app.listen(3000);

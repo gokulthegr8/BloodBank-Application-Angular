@@ -47,7 +47,7 @@
             <input [(ngModel)]="registerUserData.ConfirmPassword"[(ngModel)]="user.ConfirmPassword" name="ConfirmPassword" id="ConfirmPassword"type="password":focus class="textbox" placeholder="Confirm Password"onkeyup='check_pass();' required>
             <!-- <p>Confirm Password: <input type="password" name="ConfirmPassword"></p> -->
 
-            <button (click)="registerUser()" class="button" id="submit" type="submit" >Submit</button>
+            <button (click)="checkHosp();registerUser();" class="button" id="submit" type="submit" >Submit</button>
            <!-- <p> <input  type="submit" onclick="registerUser()"  ></p> -->
 
         </form>

@@ -52,8 +52,12 @@ export class SignupPageComponent implements OnInit {
           
           if(this.registerUserData){
             console.log("inside ulla if")
-          this.router.navigateByUrl('/login');
-          }
+            // this.checkHosp();
+            // this.router.navigateByUrl('/login');
+
+            console.log("After ulla if")
+            }
+            // }
       },
       r => {
         alert(r.error.error);
@@ -91,4 +95,19 @@ export class SignupPageComponent implements OnInit {
          this.MyPopUp = true;
          return this.MyPopUp
         }    
+        checkHosp(){
+          console.log("before func start")
+          this.auth.checkHosID(this.registerUserData)
+            .subscribe(
+              x => {
+                console.log("inside func")
+                this.router.navigateByUrl('/login');
+
+              },
+              x=>{
+                alert("Hospital ID already exists");
+
+              }
+            );
+        }
 }
