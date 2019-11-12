@@ -13,7 +13,9 @@ router.post('/checkHospitalID', function(request, response) {
 	if (hospitalId) {
 		db.query('SELECT * FROM hospital_sign_up WHERE hospitalId = ?', [hospitalId], function(error, results, fields) {
 			if (results.length > 0) {
+				response.status(404);
 				response.send('HospitalID already exists in the database')
+			
 				// response.redirect('/home');
 
 			} else {

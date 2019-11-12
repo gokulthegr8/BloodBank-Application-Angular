@@ -25,8 +25,11 @@ router.post('/auth', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.hospitalId = hospitalId;
+
 				response.redirect('/home');
 			} else {
+				response.status(404);
+
 				response.send('Incorrect hospitalId and/or Password!');
 			}			
 			response.end();
@@ -39,6 +42,7 @@ router.post('/auth', function(request, response) {
 
 router.get('/home', function(request, response) {
 	if (request.session.loggedin) {
+
 		response.json('Welcome back, ' + request.session.hospitalId + '!');
 	} else {
 		response.json('Please login to view this page!');
