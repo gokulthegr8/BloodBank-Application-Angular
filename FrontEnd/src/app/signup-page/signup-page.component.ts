@@ -41,11 +41,13 @@ export class SignupPageComponent implements OnInit {
       console.log("register is: "+  this.registerUserData)
       console.log("register is: "+  this.user.hospitalName)
 
-      this.flag=0;
-      console.log("Flag is "+this.flag)
-    }
-      if(this.flag==0){
+      // this.flag=0;
+      // console.log("Flag is "+this.flag)
+    // }
+      // if(this.flag==0){
       console.log("inside window if")
+      if(this.user.password==this.user.ConfirmPassword)
+{
     this.auth.registerUser(this.registerUserData)
     .subscribe(
       r => {
@@ -64,14 +66,14 @@ export class SignupPageComponent implements OnInit {
       }
       );
       }
-  
+    }
   }
-   setBoolean() {
-     if(this.registerUserData){
-    this.MyPopUp = true;
-    return this.MyPopUp
-     }
-  }
+  //  setBoolean() {
+  //    if(this.registerUserData){
+  //   this.MyPopUp = true;
+  //   return this.MyPopUp
+  //    }
+  // }
   // data(){
   //   for(var hospitalName in this.registerUserData) {
   //     if(this.registerUserData.hasOwnProperty(hospitalName)) {
@@ -92,6 +94,7 @@ export class SignupPageComponent implements OnInit {
 // }
        checkAllInput(){
          if(this.user.hospitalName!=''&&this.user.address!=''&&this.user.city!=''&&this.user.state!=''&&this.user.zipcode!=''&&this.user.hospitalId!=''&&this.user.password!=''&&this.user.ConfirmPassword!=''&&this.user.password==this.user.ConfirmPassword)
+         console.log("inside check input if")
          this.MyPopUp = true;
          return this.MyPopUp
         }    
@@ -101,6 +104,7 @@ export class SignupPageComponent implements OnInit {
             .subscribe(
               x => {
                 console.log("inside func")
+                if(this.user.password==this.user.ConfirmPassword)
                 this.router.navigateByUrl('/login');
 
               },

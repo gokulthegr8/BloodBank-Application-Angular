@@ -17,6 +17,7 @@ router.use(cors());
 router.use(bodyParser.urlencoded({extended : true}));
 router.use(bodyParser.json());
 
+
 router.post('/auth', function(request, response) {
 	var hospitalId = request.body.hospitalId;
 	var password = request.body.password;
