@@ -34,6 +34,5 @@ app.get('/bloodavailabilityABneg',bloodAvailabilityController);
 app.post('/checkHospitalID',signupController);
 app.get('/home',signupController);
 
-
 app.listen(3000);
 //abc

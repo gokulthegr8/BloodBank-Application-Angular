@@ -13,6 +13,8 @@ import { BloodAvailabilityPageOposComponent } from './blood-availability-page/bl
 import { BloodAvailabilityPageOnegComponent } from './blood-availability-page/blood-availability-page-oneg/blood-availability-page-oneg.component';
 import { BloodAvailabilityPageAbposComponent } from './blood-availability-page/blood-availability-page-abpos/blood-availability-page-abpos.component';
 import { BloodAvailabilityPageAbnegComponent } from './blood-availability-page/blood-availability-page-abneg/blood-availability-page-abneg.component';
+import { CartComponent } from './cart/cart.component';
+
 const routes: Routes = [
 {path: '', component:HomePageComponent},
 {path: 'homepage', component:HomePageComponent},
@@ -26,7 +28,8 @@ const routes: Routes = [
 {path: 'blood-availability-page-opos',component: BloodAvailabilityPageOposComponent,canActivate: [NeedAuthGuard]},
 {path: 'blood-availability-page-oneg',component: BloodAvailabilityPageOnegComponent,canActivate: [NeedAuthGuard]},
 {path: 'blood-availability-page-abpos',component: BloodAvailabilityPageAbposComponent,canActivate: [NeedAuthGuard]},
-{path: 'blood-availability-page-abneg',component: BloodAvailabilityPageAbnegComponent,canActivate: [NeedAuthGuard]}
+{path: 'blood-availability-page-abneg',component: BloodAvailabilityPageAbnegComponent,canActivate: [NeedAuthGuard]},
+{path: 'cart',component: CartComponent,canActivate: [NeedAuthGuard]}
 
 
 

@@ -1,0 +1,58 @@
+<header>
+    <div id="header">
+        <div id="heading-text">
+            <a href="index.html"><img src="../../assets/images/logo.png" alt="Blood Bank logo" /></a>
+            <p>Blood Bank Application</p>
+            <p><a href="index.html"><img src="../../assets/images/logo.png" alt="Blood Bank logo" /></a></p>
+  
+        </div>
+    </div>
+    
+  </header>
+  <div id="top-bar" class="logout">
+    <button (click)="logout()" class="button"  >Logout</button>
+</div>
+    
+  <section class="event">
+    <div class=pic>
+        <section class="event">
+            <div class="big">
+                <section class='intro'>
+                    <h3 class="center" ><em>Cart</em></h3>
+                </section>
+            </div>
+        </section>
+    </div>
+      <div class="big">
+  
+    
+          
+            <form class="form" >
+                    <h3 class="center" ><em>BloodGroup: {{BloodGroup}} </em></h3>
+
+                <!-- <label >{{BloodGroup}}  </label> -->
+                <label >Quantity  </label>
+
+                    <input type="text":focus class="textbox" id="qty" value={{bloodqty}} required>
+                    <button (click)="updateBloodQty()" class="button1"  >Update Blood Quantity</button>
+                    <br>
+                    <button  (click)="removeBloodCart()" class="button1"  >Remove From Cart</button>
+
+                    <br>
+                    <h3 class="center" ><em>Urgency </em></h3>
+                    <input type="radio"  name= "urgency" id="urgency1" value="Very Urgent" required>Very Urgent<br>
+                    <input type="radio"  name= "urgency" id="urgency2" value="Urgent" required>Urgent<br>
+                    <input type="radio"  name= "urgency" id="urgency3" value="Not Urgent" required>Not Urgent<br>
+
+
+                <button (click)="completeOrder()"  class="button1"  >Order</button>
+            </form>
+        
+  
+  </div>
+  </section>
+  <footer>
+    &copy; Blood Bank Inc. &nbsp;&nbsp;
+    <a href="#" class="fa fa-facebook"></a>&nbsp;
+    <a href="#" class="fa fa-twitter"></a>
+  </footer>

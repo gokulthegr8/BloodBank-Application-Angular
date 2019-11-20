@@ -19,6 +19,7 @@ import { BloodAvailabilityPageOnegComponent } from './blood-availability-page/bl
 import { BloodAvailabilityPageAbposComponent } from './blood-availability-page/blood-availability-page-abpos/blood-availability-page-abpos.component';
 import { BloodAvailabilityPageAbnegComponent } from './blood-availability-page/blood-availability-page-abneg/blood-availability-page-abneg.component';
 import { BloodAvailabilityPageAnegComponent } from './blood-availability-page/blood-availability-page-aneg/blood-availability-page-aneg.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BloodAvailabilityPageAnegComponent } from './blood-availability-page/bl
     BloodAvailabilityPageOnegComponent,
     BloodAvailabilityPageAbposComponent,
     BloodAvailabilityPageAbnegComponent,
-    BloodAvailabilityPageAnegComponent
+    BloodAvailabilityPageAnegComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
