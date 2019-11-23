@@ -25,7 +25,7 @@
 <div>
     <form class="form" >
         <label >Hospital ID </label>
-        <input [(ngModel)]="loginUserData.hospitalId" name="HospitalID"type="text":focus class="textbox" placeholder="Hospital ID" required>
+        <input [(ngModel)]="loginUserData.hospitalId" name="HospitalID" id="HospitalID"type="text":focus class="textbox" placeholder="Hospital ID" required>
         <label >Password </label>
         <input [(ngModel)]="loginUserData.password" name="password"type="password":focus class="textbox" placeholder="Password" required>
         <button (click)="loginUser()" class="button" routerLink="/dashboard" >Submit</button>

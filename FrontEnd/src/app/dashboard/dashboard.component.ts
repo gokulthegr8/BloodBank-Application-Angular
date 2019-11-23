@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   }
 logout(){
   this.customer.deleteToken();
+  localStorage.removeItem("HospitalID");
   this.router.navigateByUrl('/homepage');
 }
 }

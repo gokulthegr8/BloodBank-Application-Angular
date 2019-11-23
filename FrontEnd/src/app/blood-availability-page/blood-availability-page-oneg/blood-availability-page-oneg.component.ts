@@ -24,6 +24,7 @@ export class BloodAvailabilityPageOnegComponent implements OnInit {
     })  }
 logout(){
   this.customer.deleteToken();
+  localStorage.removeItem("HospitalID");
   this.router.navigateByUrl('/homepage');
 }
 

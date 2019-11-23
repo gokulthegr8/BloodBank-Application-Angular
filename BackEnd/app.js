@@ -33,6 +33,8 @@ app.get('/bloodavailabilityABpos',bloodAvailabilityController);
 app.get('/bloodavailabilityABneg',bloodAvailabilityController);
 app.post('/checkHospitalID',signupController);
 app.get('/home',signupController);
+app.post('/removeBlood',bloodAvailabilityController);
+app.post('/placeOrder',bloodAvailabilityController);
 
 app.listen(3000);
 //abc

@@ -31,6 +31,7 @@ export class LoginPageComponent implements OnInit {
     .subscribe(
       r => {
           
+        localStorage.setItem("HospitalID",(document.getElementById("HospitalID") as HTMLInputElement).value);
 
           this.customer.setToken(token());
           this.router.navigateByUrl('/dashboard');

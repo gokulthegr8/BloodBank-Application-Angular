@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
-import { Alert } from 'selenium-webdriver';
+import {DatabaseService} from '../database.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,8 +11,11 @@ import { Alert } from 'selenium-webdriver';
 export class CartComponent implements OnInit {
 public bloodqty=localStorage.getItem("qty");
 public BloodGroup=localStorage.getItem("cart");
+public HospitalID=localStorage.getItem("HospitalID");
+bldqty={removeQty:this.bloodqty}
+order={hospitalId:this.HospitalID,BloodGroup:this.BloodGroup,qty:this.bloodqty}
 public quantity=false;
-  constructor(private customer:CustomerService,private router:Router) { }
+  constructor(private customer:CustomerService,private router:Router,private auth: DatabaseService) { }
 
   ngOnInit() {
   }
@@ -20,7 +23,7 @@ public quantity=false;
   //  if((document.getElementById("qty") as HTMLInputElement).value){
     console.log("Value is"+(document.getElementById("qty") as HTMLInputElement).value)
     
-    if((document.getElementById("qty") as HTMLInputElement).value!=""){
+    if((document.getElementById("qty") as HTMLInputElement).value!=""&&(document.getElementById("qty") as HTMLInputElement).value!="0"){
       // this.quantity=true;
       
   if((document.getElementById("urgency1") as HTMLInputElement).checked||(document.getElementById("urgency2") as HTMLInputElement).checked||(document.getElementById("urgency3") as HTMLInputElement).checked){
@@ -28,9 +31,23 @@ public quantity=false;
     console.log("inside if")
    
     if(confirm("Are you sure you want to place the order?")){
-      this.router.navigateByUrl('/dashboard');
-      alert("The order has been placed successfully")
-      this.removeCart();
+      console.log("qty is" +this.bloodqty)
+// this.auth.removeBloodQty(this.bloodqty)
+// .subscribe(
+//   r => {
+    
+//     alert("The order has been placed successfully")
+//       this.removeCart();
+//       this.router.navigateByUrl('/dashboard');
+
+//   },
+//   r => {
+//     alert("fail");
+//   });
+this.placeOrder();
+this.removeBloodFromDB();
+      // alert("The order has been placed successfully")
+      // this.removeCart();
     }
    
   }
@@ -48,12 +65,14 @@ public quantity=false;
 }
 logout(){
   this.customer.deleteToken();
+  localStorage.removeItem("HospitalID");
   this.router.navigateByUrl('/homepage');
 }
 removeCart(){
   localStorage.removeItem("cart");
   localStorage.removeItem("qty");
-  localStorage.removeItem("dbqty")
+  localStorage.removeItem("dbqty");
+
 }
 removeBloodCart(){
   this.removeCart();
@@ -67,6 +86,7 @@ updateBloodQty(){
   
     var finalquant:number= Number(((document.getElementById("qty") as HTMLInputElement).value))
     localStorage.setItem("qty",finalquant.toString());
+
     alert("Blood quantity updated successfully")
 if(finalquant==0){
   this.removeBloodCart();
@@ -76,5 +96,26 @@ else{
   alert("Entered quantity is greater than available quantity")
 }
   
+}
+removeBloodFromDB(){
+  this.auth.removeBloodQty(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+placeOrder(){
+  this.auth.PlaceOrder(this.order)
+  .subscribe(
+    r => {
+
+
+});
 }
 }

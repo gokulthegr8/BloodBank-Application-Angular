@@ -22,7 +22,8 @@ export class DatabaseService {
   private bloodAvailabilityABpos='http://localhost:3000/bloodavailabilityABpos';
   private bloodAvailabilityABneg='http://localhost:3000/bloodavailabilityABneg';
   private checkHospitalID='http://localhost:3000/checkHospitalID';
-
+  private removeBlood='http://localhost:3000/removeBlood';
+  private addOrder='http://localhost:3000/placeOrder';
 
   constructor(private http: HttpClient) { }
   getDbData(){
@@ -84,4 +85,10 @@ return this.http.post<any>(this.register_url,user)
       checkHosID(hospitalID){
         return this.http.post<any>(this.checkHospitalID,hospitalID)
           }
+          removeBloodQty(bloodqty){
+            return this.http.post<any>(this.removeBlood,bloodqty)
+              }
+              PlaceOrder(order){            
+            return this.http.post<any>(this.addOrder,order)
+              }
 }
