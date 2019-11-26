@@ -42,7 +42,7 @@ describe('Signup Positive Scenario', () => {
             city:'asd',
             state:'asd',
             zipcode:'123',
-            hospitalId: '123331',
+            hospitalId: '12312',
             password: 'aaa',
             done: false
         })
@@ -64,7 +64,7 @@ describe('Signup Negative Scenario', () => {
             city:'asd',
             state:'asd',
             zipcode:'123',
-            hospitalId: '123331',
+            hospitalId: '12312',
             password: 'aaa',
             done: false
         })
