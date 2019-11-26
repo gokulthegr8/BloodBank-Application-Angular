@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
 import {DatabaseService} from '../database.service';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,6 +15,7 @@ public BloodGroup=localStorage.getItem("cart");
 public HospitalID=localStorage.getItem("HospitalID");
 bldqty={removeQty:this.bloodqty}
 order={hospitalId:this.HospitalID,BloodGroup:this.BloodGroup,qty:this.bloodqty}
+public dbqty=localStorage.getItem("dbqty");
 public quantity=false;
   constructor(private customer:CustomerService,private router:Router,private auth: DatabaseService) { }
 
@@ -80,8 +82,12 @@ removeBloodCart(){
 
 }
 updateBloodQty(){
-  
-  if((document.getElementById("qty") as HTMLInputElement).value<=localStorage.getItem("dbqty")){
+
+
+  var getBloodVal=(document.getElementById("qty") as HTMLInputElement).value;
+  // this.newblood=[localStorage.getItem("dbqty")];
+  // if(Number(document.getElementById("qty") as HTMLInputElement)<=Number(localStorage.getItem("dbqty"))){
+    if(Number(getBloodVal)<=Number(this.dbqty)){
 
   
     var finalquant:number= Number(((document.getElementById("qty") as HTMLInputElement).value))
@@ -89,6 +95,8 @@ updateBloodQty(){
 
     alert("Blood quantity updated successfully")
 if(finalquant==0){
+  alert("Redirecting to Dashboard as the quantity was updated to 0/Empty")
+
   this.removeBloodCart();
 
 }}
