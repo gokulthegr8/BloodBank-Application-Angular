@@ -167,7 +167,7 @@ router.post('/placeOrder',function(request,response){
   var urgency= request.body.urgency;
 
 db.query('INSERT INTO `ordersNew` (`HospitalID`,`BloodGroup`,`Quantity`,`Urgency`) VALUES (?,?,?,?)',[hospitalId,BloodGroup,qty,urgency],(error1,result1)=>{
-response.json("Done");
+response.json("Order has been placed successfully");
 
 });
 });
