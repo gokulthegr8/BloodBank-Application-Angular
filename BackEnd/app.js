@@ -33,7 +33,15 @@ app.get('/bloodavailabilityABpos',bloodAvailabilityController);
 app.get('/bloodavailabilityABneg',bloodAvailabilityController);
 app.post('/checkHospitalID',signupController);
 app.get('/home',signupController);
-app.post('/removeBlood',bloodAvailabilityController);
+app.post('/removeBloodAPos',bloodAvailabilityController);
+app.post('/removeBloodANeg',bloodAvailabilityController);
+app.post('/removeBloodBPos',bloodAvailabilityController);
+app.post('/removeBloodBNeg',bloodAvailabilityController);
+app.post('/removeBloodOPos',bloodAvailabilityController);
+app.post('/removeBloodONeg',bloodAvailabilityController);
+app.post('/removeBloodABPos',bloodAvailabilityController);
+app.post('/removeBloodABNeg',bloodAvailabilityController);
+
 app.post('/placeOrder',bloodAvailabilityController);
 
 app.listen(3000);

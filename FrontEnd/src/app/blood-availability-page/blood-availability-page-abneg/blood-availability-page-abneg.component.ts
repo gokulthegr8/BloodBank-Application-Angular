@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../customer.service';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../../database.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-blood-availability-page-abneg',
@@ -10,8 +11,10 @@ import { DatabaseService } from '../../database.service';
 })
 export class BloodAvailabilityPageAbnegComponent implements OnInit {
   public blood:any=[];
-  constructor(private customer:CustomerService,private router:Router,private db: DatabaseService) { }
+
+  constructor(private customer:CustomerService,private router:Router,private db: DatabaseService,private activatedRoute: ActivatedRoute) { }
   ngOnInit() {
+    
     this.db.getBloodQtyABneg().subscribe((dbb)=>{
       console.log(dbb);
       
@@ -28,5 +31,38 @@ logout(){
   this.router.navigateByUrl('/homepage');
 }
 
+
+addtoCart1(){
+  // console.log("abc")
+  // this.Cart();
+  var quantity= ((document.getElementById("qty") as HTMLInputElement).value);
+  if(Number(quantity)+Number(localStorage.getItem("qty"))<=this.blood){
+  if(localStorage.getItem("qty"))
+  {
+    var quant:number=Number(localStorage.getItem("qty"));
+    var finalquant:number= quant+Number(((document.getElementById("qty") as HTMLInputElement).value))
+    localStorage.setItem("qty",finalquant.toString());
+  }
+  else{
+    localStorage.setItem("qty", quantity);
+
+  }
+  if((document.getElementById("qty") as HTMLInputElement).value==""||(document.getElementById("qty") as HTMLInputElement).value=="0"){
+ alert("Please enter the required blood quantity");
+  }else{
+    localStorage.setItem("cart", "AB-");
+    localStorage.setItem("dbqty",this.blood)
+    this.router.navigateByUrl('/cart');
+  
+  }}
+  else{
+    alert("Entered blood quantity is greater than available quantity")
+  }
+
+}
+Cart(){
+ 
+  this.router.navigateByUrl('/cart');
 }
 
+}

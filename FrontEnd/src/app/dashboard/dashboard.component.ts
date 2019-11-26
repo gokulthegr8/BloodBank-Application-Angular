@@ -17,4 +17,9 @@ logout(){
   localStorage.removeItem("HospitalID");
   this.router.navigateByUrl('/homepage');
 }
+Cart(){
+ 
+  this.router.navigateByUrl('/cart');
+}
+
 }

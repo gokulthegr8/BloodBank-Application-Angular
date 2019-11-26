@@ -14,9 +14,17 @@ public bloodqty=localStorage.getItem("qty");
 public BloodGroup=localStorage.getItem("cart");
 public HospitalID=localStorage.getItem("HospitalID");
 bldqty={removeQty:this.bloodqty}
-order={hospitalId:this.HospitalID,BloodGroup:this.BloodGroup,qty:this.bloodqty}
+public urgency1="Very Urgent";
+public urgency2="Urgent";
+public urgency3="Not Urgent";
+order1={hospitalId:this.HospitalID,BloodGroup:this.BloodGroup,qty:this.bloodqty,urgency:this.urgency1}
+order2={hospitalId:this.HospitalID,BloodGroup:this.BloodGroup,qty:this.bloodqty,urgency:this.urgency2}
+order3={hospitalId:this.HospitalID,BloodGroup:this.BloodGroup,qty:this.bloodqty,urgency:this.urgency3}
+
 public dbqty=localStorage.getItem("dbqty");
 public quantity=false;
+
+
   constructor(private customer:CustomerService,private router:Router,private auth: DatabaseService) { }
 
   ngOnInit() {
@@ -78,8 +86,11 @@ removeCart(){
 }
 removeBloodCart(){
   this.removeCart();
+  if(confirm("Are you sure you want to remove the blood group from the cart?"))
+  {
+  alert("Removed the blood group from cart successfully")
   this.router.navigateByUrl('/dashboard');
-
+  }
 }
 updateBloodQty(){
 
@@ -92,10 +103,10 @@ updateBloodQty(){
   
     var finalquant:number= Number(((document.getElementById("qty") as HTMLInputElement).value))
     localStorage.setItem("qty",finalquant.toString());
-
+      if(finalquant!=0){
     alert("Blood quantity updated successfully")
+      }
 if(finalquant==0){
-  alert("Redirecting to Dashboard as the quantity was updated to 0/Empty")
 
   this.removeBloodCart();
 
@@ -106,7 +117,8 @@ else{
   
 }
 removeBloodFromDB(){
-  this.auth.removeBloodQty(this.bldqty)
+  if(this.BloodGroup=="A+"){
+  this.auth.removeBloodQtyAPos(this.bldqty)
 .subscribe(
   r => {
     
@@ -118,12 +130,126 @@ removeBloodFromDB(){
     alert("fail");
   });
 }
+if(this.BloodGroup=="A-"){
+  this.auth.removeBloodQtyANeg(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+if(this.BloodGroup=="B+"){
+  this.auth.removeBloodQtyBPos(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+if(this.BloodGroup=="B-"){
+  this.auth.removeBloodQtyBNeg(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+if(this.BloodGroup=="O+"){
+  this.auth.removeBloodQtyOPos(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+if(this.BloodGroup=="O-"){
+  this.auth.removeBloodQtyONeg(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+if(this.BloodGroup=="AB+"){
+  this.auth.removeBloodQtyABPos(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+if(this.BloodGroup=="AB-"){
+  this.auth.removeBloodQtyABNeg(this.bldqty)
+.subscribe(
+  r => {
+    
+    alert("The order has been placed successfully")
+      this.removeCart();
+      this.router.navigateByUrl('/dashboard');
+  },
+  r => {
+    alert("fail");
+  });
+}
+}
 placeOrder(){
-  this.auth.PlaceOrder(this.order)
+  if((document.getElementById("urgency1") as HTMLInputElement).checked){
+  this.auth.PlaceOrder(this.order1)
   .subscribe(
     r => {
 
 
 });
+}
+if((document.getElementById("urgency2") as HTMLInputElement).checked){
+  this.auth.PlaceOrder(this.order2)
+  .subscribe(
+    r => {
+
+
+});
+}
+if((document.getElementById("urgency3") as HTMLInputElement).checked){
+  this.auth.PlaceOrder(this.order3)
+  .subscribe(
+    r => {
+
+
+});
+}
+}
+Cart(){
+ 
+  this.router.navigateByUrl('/cart');
 }
 }

@@ -22,7 +22,15 @@ export class DatabaseService {
   private bloodAvailabilityABpos='http://localhost:3000/bloodavailabilityABpos';
   private bloodAvailabilityABneg='http://localhost:3000/bloodavailabilityABneg';
   private checkHospitalID='http://localhost:3000/checkHospitalID';
-  private removeBlood='http://localhost:3000/removeBlood';
+  private removeBloodAPos='http://localhost:3000/removeBloodAPos';
+  private removeBloodANeg='http://localhost:3000/removeBloodANeg';
+  private removeBloodBPos='http://localhost:3000/removeBloodBPos';
+  private removeBloodBNeg='http://localhost:3000/removeBloodBNeg';
+  private removeBloodOPos='http://localhost:3000/removeBloodOPos';
+  private removeBloodONeg='http://localhost:3000/removeBloodONeg';
+  private removeBloodABPos='http://localhost:3000/removeBloodABPos';
+  private removeBloodABNeg='http://localhost:3000/removeBloodABNeg';
+
   private addOrder='http://localhost:3000/placeOrder';
 
   constructor(private http: HttpClient) { }
@@ -85,9 +93,31 @@ return this.http.post<any>(this.register_url,user)
       checkHosID(hospitalID){
         return this.http.post<any>(this.checkHospitalID,hospitalID)
           }
-          removeBloodQty(bloodqty){
-            return this.http.post<any>(this.removeBlood,bloodqty)
+          removeBloodQtyAPos(bloodqty){
+            return this.http.post<any>(this.removeBloodAPos,bloodqty)
               }
+              removeBloodQtyANeg(bloodqty){
+                return this.http.post<any>(this.removeBloodANeg,bloodqty)
+                  }
+                  removeBloodQtyBPos(bloodqty){
+                    return this.http.post<any>(this.removeBloodBPos,bloodqty)
+                      }
+                      removeBloodQtyBNeg(bloodqty){
+                        return this.http.post<any>(this.removeBloodBNeg,bloodqty)
+                          }
+                          removeBloodQtyOPos(bloodqty){
+                            return this.http.post<any>(this.removeBloodOPos,bloodqty)
+                              }
+                              removeBloodQtyONeg(bloodqty){
+                                return this.http.post<any>(this.removeBloodONeg,bloodqty)
+                                  }
+                                  removeBloodQtyABPos(bloodqty){
+                                    return this.http.post<any>(this.removeBloodABPos,bloodqty)
+                                      }
+                                      removeBloodQtyABNeg(bloodqty){
+                                        return this.http.post<any>(this.removeBloodABNeg,bloodqty)
+                                          }
+      
               PlaceOrder(order){            
             return this.http.post<any>(this.addOrder,order)
               }

@@ -309,6 +309,7 @@ footer {
     overflow: hidden;
     background-color: rgb(28, 34, 54);
     text-align: right;
+
 }
     
      .logout a:hover:not(.active) {
@@ -332,4 +333,5 @@ footer {
                 color: #ffffff;
     
     }
+    
 

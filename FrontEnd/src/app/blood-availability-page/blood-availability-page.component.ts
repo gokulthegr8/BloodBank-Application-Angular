@@ -15,6 +15,7 @@ public blood:any=[];
 
   constructor(private customer:CustomerService,private router:Router,private db: DatabaseService,private activatedRoute: ActivatedRoute) { }
   ngOnInit() {
+    
     this.db.getBloodQtyApos().subscribe((dbb)=>{
       console.log(dbb);
       
@@ -58,4 +59,9 @@ addtoCart1(){
   }
 
 }
+Cart(){
+ 
+  this.router.navigateByUrl('/cart');
+}
+
 }
