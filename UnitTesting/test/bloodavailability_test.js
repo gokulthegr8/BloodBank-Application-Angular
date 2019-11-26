@@ -4,7 +4,7 @@ var expect  = require('chai').expect;
 // var request = require('request');
 var supertest = require('supertest');
 
-var server = supertest.agent('http://localhost:3000');
+var server = supertest.agent('http://localhost:4000');
 describe('Test cases for Blood Bank application - BloodAvailability', () => {
 
 describe('Check Blood Availability for A Negative', () => { 
