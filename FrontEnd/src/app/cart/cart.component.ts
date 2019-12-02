@@ -85,9 +85,9 @@ removeCart(){
 
 }
 removeBloodCart(){
-  this.removeCart();
   if(confirm("Are you sure you want to remove the blood group from the cart?"))
   {
+    this.removeCart();
   alert("Removed the blood group from cart successfully")
   this.router.navigateByUrl('/dashboard');
   }
